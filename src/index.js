@@ -14,16 +14,16 @@ const render = Component => {
         <Component />
       </Provider>
     </AppContainer>,
-    document.getElementById('app'),
-  )
+    document.getElementById('app')
+  );
 }
 
-render(App)
+render(App);
 
 // Webpack Hot Module Replacement API
 if (module.hot) {
   module.hot.accept('components/app', () => {
     const App = require('./components/app').default;
-    render(App)
+    render(App);
   });
 }

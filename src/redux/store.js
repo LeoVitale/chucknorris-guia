@@ -18,7 +18,6 @@ const configureStore = initialState => {
     store.replaceReducer(createReducer(asyncReducers));
 
   if (module.hot) {
-
     module.hot.accept('./modules', () =>
       store.replaceReducer(require('./modules').default));
   }
