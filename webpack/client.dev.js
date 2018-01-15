@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || 'localhost';
 module.exports = {
@@ -28,55 +29,55 @@ module.exports = {
   },
   module: {
     rules: [{
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: 'babel-loader'
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
-        use: [
-          'file-loader'
-        ]
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
-        use: [{
-          loader: 'url-loader',
+      test: /\.js$/,
+      exclude: /node_modules/,
+      use: 'babel-loader'
+    },
+    {
+      test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+      use: [
+        'file-loader'
+      ]
+    },
+    {
+      test: /\.(png|jpg|gif)$/,
+      use: [{
+        loader: 'url-loader',
+        options: {
+          limit: 8192
+        }
+      }]
+    },
+    {
+      test: /\.css$/,
+      loaders: ['style-loader', 'css-loader'],
+      include: path.resolve(__dirname, '../')
+    },
+    {
+      test: /\.scss$/,
+      exclude: /node_modules/,
+      loaders: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          query: {
+            modules: true,
+            sourceMap: true,
+            importLoaders: 1,
+            camelCase: 'dashes',
+            localIdentName: '[name]__[local]--[hash:base64:5]'
+          }
+        },
+        {
+          loader: 'sass-loader',
           options: {
-            limit: 8192
+            data: '@import "utils/index.scss";',
+            includePaths: [path.resolve('./src/sass/')],
+            sourceMap: true
           }
-        }]
-      },
-      {
-        test: /\.css$/,
-        loaders: ['style-loader', 'css-loader'],
-        include: path.resolve(__dirname, '../')
-      },
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        loaders: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            query: {
-              modules: true,
-              sourceMap: true,
-              importLoaders: 1,
-              camelCase: 'dashes',
-              localIdentName: '[name]__[local]--[hash:base64:5]'
-            }
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              data: '@import "utils/index.scss";',
-              includePaths: [path.resolve('./src/sass/')],
-              sourceMap: true,
-            }
-          }
-        ]
-      },
+        }
+      ]
+    }
     ]
   },
   resolve: {
@@ -96,4 +97,4 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
   ]
-}
+};

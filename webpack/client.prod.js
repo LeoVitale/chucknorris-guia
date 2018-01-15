@@ -13,60 +13,60 @@ module.exports = {
   output: {
     filename: '[name].js',
     chunkFilename: '[name].js',
-    path: path.resolve(__dirname, '../buildClient'),
+    path: path.resolve(__dirname, '../buildClient')
   },
   module: {
     rules: [{
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: 'babel-loader'
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
-        use: [
-          'file-loader'
-        ]
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
+      test: /\.js$/,
+      exclude: /node_modules/,
+      use: 'babel-loader'
+    },
+    {
+      test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+      use: [
+        'file-loader'
+      ]
+    },
+    {
+      test: /\.(png|jpg|gif)$/,
+      use: [{
+        loader: 'url-loader',
+        options: {
+          limit: 8192
+        }
+      }]
+    },
+    {
+      test: /\.css$/,
+      loaders: ['style-loader', 'css-loader'],
+      include: path.resolve(__dirname, '../')
+    },
+    {
+      test: /\.scss$/,
+      exclude: /node_modules/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
         use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 8192
+          loader: 'css-loader',
+          query: {
+            modules: true,
+            sourceMap: true,
+            importLoaders: 1,
+            camelCase: 'dashes',
+            localIdentName: '[name]__[local]--[hash:base64:5]'
           }
-        }]
-      },
-      {
-        test: /\.css$/,
-        loaders: ['style-loader', 'css-loader'],
-        include: path.resolve(__dirname, '../')
-      },
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [{
-              loader: 'css-loader',
-              query: {
-                modules: true,
-                sourceMap: true,
-                importLoaders: 1,
-                camelCase: 'dashes',
-                localIdentName: '[name]__[local]--[hash:base64:5]'
-              }
-            },
-            {
-              loader: 'sass-loader',
-              options: {
-                data: '@import "utils/index.scss";',
-                includePaths: [path.resolve('./src/sass/')],
-                sourceMap: true,
-              }
-            }
-          ]
-        }),
-      },
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            data: '@import "utils/index.scss";',
+            includePaths: [path.resolve('./src/sass/')],
+            sourceMap: true
+          }
+        }
+        ]
+      })
+    }
     ]
   },
   resolve: {
@@ -82,11 +82,11 @@ module.exports = {
     extensions: ['.js', '.css', '.scss']
   },
   plugins: [
-    new ExtractTextPlugin("style.css"),
+    new ExtractTextPlugin('style.css'),
 
     new HtmlWebpackPlugin({
       template: 'index.html',
-      inject: true,
+      inject: true
     })
   ]
-}
+};

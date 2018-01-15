@@ -16,7 +16,7 @@ const render = Component => {
     </AppContainer>,
     document.getElementById('app')
   );
-}
+};
 
 render(App);
 

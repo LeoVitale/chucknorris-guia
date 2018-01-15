@@ -8,12 +8,15 @@ module.exports = {
     sourceType: 'module',
     allowImportExportEverywhere: false
   },
-  plugins: [''],
-  extends: ['airbnb'],
+  plugins: ['flowtype'],
+  extends: ['airbnb', 'plugin:flowtype/recommended'],
   settings: {
+    flowtype: {
+      onlyFilesWithFlowAnnotation: true
+    },
     'import/resolver': {
       node: {
-        extensions: ['.js', '.json', '.css', 'scss']
+        extensions: ['.js', '.json', '.css', '.styl']
       }
     }
   },

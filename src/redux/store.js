@@ -1,5 +1,5 @@
-import {createStore, applyMiddleware, compose} from "redux";
-import thunk from "redux-thunk";
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
 import createReducer from './modules/index';
 
