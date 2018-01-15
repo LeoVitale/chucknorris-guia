@@ -1,0 +1,15 @@
+// jsconfig.json
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "commonjs",
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "./",
+        "paths": {
+          "components/*": ["src/components/*"],
+          "containers/*": ["src/containers/*"],
+          "_redux/*": ["src/redux/*"],
+          "services/*": ["src/services/*"]
+        }
+    }
+}
