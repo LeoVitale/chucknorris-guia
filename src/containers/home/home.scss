@@ -6,7 +6,7 @@
   .pagefade-enter.pagefade-enter-active,
   .pagefade-appear.pagefade-appear-active {
     left: 0;
-    transition:opacity 300ms ease-in;
+    transition:opacity 300ms cubic-bezier(1.000, -0.200, 0.230, 1.165);
   }
   .pagefade-enter.pagefade-enter-active {
     transition-delay: 3000ms;
@@ -16,7 +16,7 @@
   }
   .pagefade-exit.pagefade-exit-active {
     left: 600px;
-    transition: all 300ms ease-out;
+    transition: all 300ms cubic-bezier(1.000, -0.200, 0.230, 1.165);
   }
 }
 
