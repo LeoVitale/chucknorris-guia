@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import configureStore from 'modules/store';
 import App from 'components/app';
+import './sass/global.scss';
 
 const store = configureStore();
 

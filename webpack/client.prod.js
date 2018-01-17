@@ -74,7 +74,7 @@ module.exports = {
       components: path.resolve('src/components'),
       containers: path.resolve('src/containers'),
       img: path.resolve('src/images'),
-      services: path.resolve('src/services'),
+      services: path.resolve('src/api'),
       modules: path.resolve('src/redux'),
       utils: path.resolve('src/utils')
     },

@@ -1,8 +1,9 @@
 import React from 'react';
+import Home from 'containers/home';
 
 const App = () => (
   <div>
-      App
+    <Home />
   </div>
 );
 
