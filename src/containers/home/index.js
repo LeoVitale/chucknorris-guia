@@ -22,7 +22,7 @@ class Home extends Component {
           </div>
           <div className={styles.slideContainer} >
             <TransitionGroup className="rawr">
-              <CSSTransition timeout={{ appear: 300, enter: 300, exit: 300 }} classNames="pagefade" key={joke.id}>
+              <CSSTransition timeout={{ appear: 700, enter: 700, exit: 700 }} classNames="pagefade" key={joke.id}>
                 <div className={styles.slideItem} style={{ backgroundImage: `url(${gif.image_url})` }}>
                   <div className={styles.shine} />
                   {joke.value}
