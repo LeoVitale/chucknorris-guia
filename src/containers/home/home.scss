@@ -9,7 +9,7 @@
     transition: all 600ms cubic-bezier(1.000, -0.200, 0.230, 1.165);
   }
   .pagefade-enter.pagefade-enter-active {
-    transition-delay:10000ms;
+    transition-delay: 10000ms;
   }
   .pagefade-exit {
     left: 0px;
@@ -21,21 +21,24 @@
 }
 
 .slider {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 600px;
   height: 300px;
+  margin: -150px 0 0 -300px;
 }
+
 .chuck-image {
   position: absolute;
-  bottom: 0;
-  left: -150px;
+  top: -120px;
+  left: 410px;
   height: 500px;
-  z-index: 10;
+  z-index: 6;
   img {
     width: auto;
     height: 100%;
   }
-
 }
 
 .slide-container {
@@ -43,7 +46,30 @@
   position: relative;
   width: 600px;
   height: 300px;
+  box-shadow: 0px 45px 100px rgba(0, 0, 0, .4), inset 0 0 0 1000px rgba(156, 27, 27, .6);
 }
+
+.slide-content {
+  position: absolute;
+  padding: 20px 230px 20px 20px;
+  z-index: 2;
+  bottom: 0;
+  p {
+    font-weight: 300;
+  }
+  h1 {
+    font-family: 'Rubik', sans-serif;
+    font-size: 3em;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  h3 {
+    margin: 0;
+    font-weight: 700;
+  }
+}
+
 .slide-item {
   position: absolute;
   top: 0;
@@ -57,14 +83,38 @@
   background-repeat: no-repeat;
   box-shadow: 0px 45px 100px rgba(0, 0, 0, .4), inset 0 0 0 1000px rgba(27, 24, 10, 0.6);
   color: #fff;
+  z-index: 4;
   .shine {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: -webkit-gradient(linear, left top, right top, from(rgba(0,0,0,.4)),color-stop(60%, rgba(0,0,0,.2)));
-    background: linear-gradient(90deg, rgba(0,0,0,.4) 0%,rgba(0,0,0,.2) 60%);
+    background: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, .4)), color-stop(60%, rgba(0, 0, 0, .2)));
+    background: linear-gradient(90deg, rgba(0, 0, 0, .4) 0%, rgba(0, 0, 0, .2) 60%);
+    z-index: 1;
+  }
+}
+
+.buttons {
+  margin-top: 10px;
+  z-index: 10;
+  position: absolute;
+}
+
+.category-button {
+  outline: none;
+  cursor: pointer;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;
+  background-color: #ccc;
+  margin: 4px;
+  transition: all 200ms cubic-bezier(1.000, -0.200, 0.230, 1.165);
+  z-index: 0;
+  &:hover {
+    background-color: #ffd000;
+    transform: scale(1.5);
     z-index: 1;
   }
 }

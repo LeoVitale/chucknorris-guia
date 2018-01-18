@@ -1,7 +1,8 @@
 import {
   getCategories,
   getRandomJoke,
-  getChuckNorrisGif
+  getChuckNorrisGif,
+  getJokeByCategory
 } from 'services';
 import {
   Z_DEFAULT_COMPRESSION
@@ -99,6 +100,21 @@ export function loadRadomJoke() {
       type: LOADING_JOKE
     });
     Promise.all([getRandomJoke(), getChuckNorrisGif()])
+      .then(([joke, gif]) => {
+        dispatch({
+          type: LOADED_JOKE,
+          payload: { joke, gif: gif.data }
+        });
+      });
+  };
+}
+
+export function loadCategoryJoke(category) {
+  return dispatch => {
+    dispatch({
+      type: LOADING_JOKE
+    });
+    Promise.all([getJokeByCategory(category), getChuckNorrisGif()])
       .then(([joke, gif]) => {
         dispatch({
           type: LOADED_JOKE,

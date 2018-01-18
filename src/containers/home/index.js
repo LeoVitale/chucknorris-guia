@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import styles from './home.scss';
 
-import { loadCategories, loadRadomJoke } from 'modules/modules/home';
+import { loadCategories, loadRadomJoke, loadCategoryJoke } from 'modules/modules/home';
 import chuckImage from 'images/chuck_norris_cartoon.png';
 
 class Home extends Component {
@@ -12,8 +12,16 @@ class Home extends Component {
     this.props.loadRadomJoke();
   }
 
+  loadCategoryJoke = category => {
+    if (category === 'random') {
+      this.props.loadRadomJoke();
+    } else {
+      this.props.loadCategoryJoke(category);
+    }
+  }
+
   render() {
-    const { joke, gif } = this.props;
+    const { joke, gif, categories } = this.props;
     return (
       <div>
         <div className={styles.slider}>
@@ -25,13 +33,21 @@ class Home extends Component {
               <CSSTransition timeout={{ appear: 700, enter: 700, exit: 700 }} classNames="pagefade" key={joke.id}>
                 <div className={styles.slideItem} style={{ backgroundImage: `url(${gif.image_url})` }}>
                   <div className={styles.shine} />
-                  {joke.value}
+                  <div className={styles.slideContent}>
+                    <h1>Chucky</h1>
+                    <h3>{joke.category ? joke.category : 'Random'}</h3>
+                    <p>{joke.value}</p>
+                  </div>
                 </div>
               </CSSTransition>
             </TransitionGroup>
           </div>
+          <div className={styles.buttons}>
+            <button className={styles.categoryButton} onClick={() => this.loadCategoryJoke('random')}>random</button>
+            {categories.map((category, index) => <button className={styles.categoryButton} key={index} onClick={() => this.loadCategoryJoke(category)}>{category}</button>)}
+          </div>
         </div>
-        <span className="mydiv" onClick={this.props.loadRadomJoke}>clique</span>
+
       </div>
     );
   }
@@ -45,7 +61,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   loadCategories,
-  loadRadomJoke
+  loadRadomJoke,
+  loadCategoryJoke
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -1,4 +1,14 @@
 :global {
+  @import url('normalize.css');
   @import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
   @import url(https://fonts.googleapis.com/css?family=Rubik:400,900);
+}
+
+*{box-sizing: border-box;}
+body, html { height: 100%; min-height: 100%; }
+body {
+   background: linear-gradient(#f6f7fc 0%, #d5e1e8 40%);
+   transform-style: preserve-3d;
+   transform: perspective(800px);
+   font-family: 'Lato', sans-serif;
 }
