@@ -1,6 +1,6 @@
 .slider {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   width: 600px;
   height: 300px;
@@ -26,18 +26,23 @@
 }
 
 .category-button {
+  min-width: 110px;
   outline: none;
   cursor: pointer;
-  padding: 5px;
   border: none;
   border-radius: 3px;
-  background-color: #ccc;
-  margin: 4px;
-  transition: all 200ms cubic-bezier(1.000, -0.200, 0.230, 1.165);
-  z-index: 0;
-  &:hover {
-    background-color: #ffd000;
-    transform: scale(1.5);
-    z-index: 1;
+  padding: 10px 20px;
+  font-size: 18px;
+  text-decoration: none;
+  margin: 5px;
+  color: #fff;
+  position: relative;
+  display: inline-block;
+  background-color: #55acee;
+  box-shadow: 0px 5px 0px 0px #3C93D5;
+  &:active {
+    transform: translate(0px, 5px);
+    -webkit-transform: translate(0px, 5px);
+    box-shadow: 0px 1px 0px 0px;
   }
 }
