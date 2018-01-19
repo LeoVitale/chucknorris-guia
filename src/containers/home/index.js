@@ -22,14 +22,15 @@ class Home extends Component {
   }
 
   render() {
-    const { joke, gif, categories } = this.props;
+    const { joke, gif, categories, loadingJoke } = this.props;
+
     return (
       <div>
         <div className={styles.slider}>
           <div className={styles.chuckImage}>
             <img src={chuckImage} alt="chuck norris" />
           </div>
-          <Slider joke={joke} gif={gif} />
+          <Slider joke={joke} gif={gif} isLoading={loadingJoke} />
           <div className={styles.buttons}>
             <button className={styles.categoryButton} onClick={() => this.loadCategoryJoke('random')}>random</button>
             {categories.map((category, index) => <button className={styles.categoryButton} key={index} onClick={() => this.loadCategoryJoke(category)}>{category}</button>)}
@@ -46,14 +47,15 @@ Home.propTypes = {
   loadCategoryJoke: PropTypes.func.isRequired,
   joke: PropTypes.object.isRequired,
   gif: PropTypes.object.isRequired,
-  categories: PropTypes.array.isRequired
-
+  categories: PropTypes.array.isRequired,
+  loadingJoke: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
   categories: state.home.categories,
   joke: state.home.joke,
-  gif: state.home.gif
+  gif: state.home.gif,
+  loadingJoke: state.home.loadingJoke
 });
 
 const mapDispatchToProps = {
