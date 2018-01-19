@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import styles from './home.scss';
+import Slider from 'components/slider';
 
 import { loadCategories, loadRadomJoke, loadCategoryJoke } from 'modules/modules/home';
 import chuckImage from 'images/chuck_norris_cartoon.png';
+import styles from './home.scss';
 
 class Home extends Component {
   componentWillMount() {
@@ -28,26 +28,12 @@ class Home extends Component {
           <div className={styles.chuckImage}>
             <img src={chuckImage} alt="chuck norris" />
           </div>
-          <div className={styles.slideContainer} >
-            <TransitionGroup className="rawr">
-              <CSSTransition timeout={{ appear: 700, enter: 700, exit: 700 }} classNames="pagefade" key={joke.id}>
-                <div className={styles.slideItem} style={{ backgroundImage: `url(${gif.image_url})` }}>
-                  <div className={styles.shine} />
-                  <div className={styles.slideContent}>
-                    <h1>Chucky</h1>
-                    <h3>{joke.category ? joke.category : 'Random'}</h3>
-                    <p>{joke.value}</p>
-                  </div>
-                </div>
-              </CSSTransition>
-            </TransitionGroup>
-          </div>
+          <Slider joke={joke} gif={gif} />
           <div className={styles.buttons}>
             <button className={styles.categoryButton} onClick={() => this.loadCategoryJoke('random')}>random</button>
             {categories.map((category, index) => <button className={styles.categoryButton} key={index} onClick={() => this.loadCategoryJoke(category)}>{category}</button>)}
           </div>
         </div>
-
       </div>
     );
   }

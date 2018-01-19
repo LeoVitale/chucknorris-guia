@@ -11,14 +11,14 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     host: 'localhost',
-    port: 3000,
+    port: 3005,
     historyApiFallback: true,
     hot: true
   },
   entry: [
     'babel-polyfill',
     'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:3000', // WebpackDevServer host and port
+    'webpack-dev-server/client?http://localhost:3005', // WebpackDevServer host and port
     'webpack/hot/only-dev-server',
     path.resolve(__dirname, '../src/index.js')
   ],
