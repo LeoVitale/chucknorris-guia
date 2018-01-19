@@ -18,7 +18,8 @@
     "start:dev": "webpack-dev-server --config webpack/client.dev.js --open",
     "clean": "rimraf buildClient",
     "build": "webpack --config webpack/client.prod.js --color -p",
-    "lint": "eslint --fix src webpack",
+    "lint:fix": "eslint --fix src webpack",
+    "lint": "eslint src webpack",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {

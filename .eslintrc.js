@@ -50,6 +50,7 @@ module.exports = {
     'no-use-before-define': 0,
     'no-param-reassign': 0,
     'react/prop-types': 1,
+    'react/forbid-prop-types': 0,
     'react/require-default-props': 0,
     'react/no-render-return-value': 0,
     'no-confusing-arrow': 0,

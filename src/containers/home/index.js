@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Slider from 'components/slider';
 
@@ -38,6 +39,16 @@ class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  loadCategories: PropTypes.func.isRequired,
+  loadRadomJoke: PropTypes.func.isRequired,
+  loadCategoryJoke: PropTypes.func.isRequired,
+  joke: PropTypes.object.isRequired,
+  gif: PropTypes.object.isRequired,
+  categories: PropTypes.array.isRequired
+
+};
 
 const mapStateToProps = state => ({
   categories: state.home.categories,

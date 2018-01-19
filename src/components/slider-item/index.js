@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
 const SliderItem = ({ joke, gif }) => (
@@ -11,5 +12,10 @@ const SliderItem = ({ joke, gif }) => (
     </div>
   </div>
 );
+
+SliderItem.propTypes = {
+  joke: PropTypes.object.isRequired,
+  gif: PropTypes.object.isRequired
+};
 
 export default SliderItem;

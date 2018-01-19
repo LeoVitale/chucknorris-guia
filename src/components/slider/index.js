@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import SliderItem from 'components/slider-item';
 import styles from './styles.scss';
@@ -12,5 +13,11 @@ const Slider = props => (
     </TransitionGroup>
   </div>
 );
+
+Slider.propTypes = {
+  joke: PropTypes.shape({
+    id: PropTypes.string.isRequired
+  })
+};
 
 export default Slider;
