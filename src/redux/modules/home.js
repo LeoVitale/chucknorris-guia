@@ -4,9 +4,6 @@ import {
   getChuckNorrisGif,
   getJokeByCategory
 } from 'services';
-import {
-  Z_DEFAULT_COMPRESSION
-} from 'zlib';
 
 const LOADING_HOME = 'chuck/home/LOADING_HOME';
 const LOADING_CATEGORIES = 'chuck/home/LOADING_CATEGORIES';
