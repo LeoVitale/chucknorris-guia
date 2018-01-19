@@ -1,19 +1,27 @@
 import {
+  loadedCategories,
+  loadedGif,
+  loadedJokes,
+  loadingCategories,
+  loadingGif,
+  loadingJoke } from './actions';
+
+import {
+  LOADED_CATEGORIES,
+  LOADED_GIF,
+  LOADED_JOKE,
+  LOADING_CATEGORIES,
+  LOADING_GIF,
+  LOADING_HOME,
+  LOADING_JOKE
+} from './constants';
+
+import {
   getCategories,
   getRandomJoke,
   getChuckNorrisGif,
   getJokeByCategory
 } from 'services';
-
-const LOADING_HOME = 'chuck/home/LOADING_HOME';
-const LOADING_CATEGORIES = 'chuck/home/LOADING_CATEGORIES';
-const LOADED_CATEGORIES = 'chuck/home/LOADED_CATEGORIES';
-
-const LOADING_JOKE = 'chuck/home/LOADING_JOKE';
-const LOADED_JOKE = 'chuck/home/LOADED_JOKE';
-
-const LOADED_GIF = 'chuck/home/LOADED_GIF';
-const LOADING_GIF = 'chuck/home/LOADING_GIF';
 
 const initialState = {
   loadingHome: false,
@@ -60,63 +68,41 @@ export default (state = initialState, action) => {
   }
 };
 
-
+// ACTIONS CREATORS
 export function loadChuckNorrisGif() {
   return dispatch => {
-    dispatch({
-      type: LOADING_GIF
-    });
+    dispatch(loadingGif());
     getChuckNorrisGif()
       .then(result => {
-        dispatch({
-          type: LOADED_GIF,
-          payload: result
-        });
+        dispatch(loadedGif(result));
       });
   };
 }
 
 export function loadCategories() {
   return dispatch => {
-    dispatch({
-      type: LOADING_CATEGORIES
-    });
+    dispatch(loadingCategories());
     getCategories()
       .then(result => {
-        dispatch({
-          type: LOADED_CATEGORIES,
-          payload: result
-        });
+        dispatch(loadedCategories(result));
       });
   };
 }
 
-export function loadRadomJoke() {
-  return dispatch => {
-    dispatch({
-      type: LOADING_JOKE
+export const loadRadomJoke = () => dispatch => {
+  dispatch(loadingJoke());
+  Promise.all([getRandomJoke(), getChuckNorrisGif()])
+    .then(([joke, gif]) => {
+      dispatch(loadedJokes(joke, gif));
     });
-    Promise.all([getRandomJoke(), getChuckNorrisGif()])
-      .then(([joke, gif]) => {
-        dispatch({
-          type: LOADED_JOKE,
-          payload: { joke, gif: gif.data }
-        });
-      });
-  };
-}
+};
 
 export function loadCategoryJoke(category) {
   return dispatch => {
-    dispatch({
-      type: LOADING_JOKE
-    });
+    dispatch(loadingJoke());
     Promise.all([getJokeByCategory(category), getChuckNorrisGif()])
       .then(([joke, gif]) => {
-        dispatch({
-          type: LOADED_JOKE,
-          payload: { joke, gif: gif.data }
-        });
+        dispatch(loadedJokes(joke, gif));
       });
   };
 }
