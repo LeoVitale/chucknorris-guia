@@ -1,15 +1,26 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   name: 'client',
   target: 'web',
-  devtool: 'source-map',
-  entry: [
-    path.resolve(__dirname, '../src/index.js')
-  ],
+  entry: {
+    app: path.resolve(__dirname, '../src/index.js'),
+    vendor: [
+      'react',
+      'react-dom',
+      'react-flexbox-grid',
+      'react-redux',
+      'redux',
+      'redux-thunk',
+      'redux-devtools-extension/logOnlyInProduction',
+      'react-transition-group'
+    ]
+
+  },
   output: {
     filename: '[name].js',
     chunkFilename: '[name].js',
@@ -82,8 +93,24 @@ module.exports = {
     extensions: ['.js', '.css', '.scss']
   },
   plugins: [
+    new UglifyJSPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'vendor.js',
+      compress: {
+        screw_ie8: true,
+        warnings: false
+      },
+      mangle: {
+        screw_ie8: true
+      },
+      output: {
+        screw_ie8: true,
+        comments: false
+      },
+      sourceMap: false
+    }),
     new ExtractTextPlugin('style.css'),
-
     new HtmlWebpackPlugin({
       template: 'index.html',
       inject: true

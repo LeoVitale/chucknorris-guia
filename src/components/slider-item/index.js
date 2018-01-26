@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
-const SliderItem = ({ joke, gif }) => (
-  <div className={styles.slideItem} style={{ backgroundImage: `url(${gif.image_url})` }}>
+const SliderItem = ({ joke, background }) => (
+  <div className={styles.slideItem} style={background.image_url && { backgroundImage: `url(${background.image_url})` }}>
     <div className={styles.shine} />
     <div className={styles.slideContent}>
       <h1>Chucky</h1>
-      <h3>{joke.category ? joke.category : 'Random'}</h3>
+      <h2>{joke.category ? joke.category : 'Random'}</h2>
       <p>{joke.value}</p>
     </div>
   </div>
@@ -15,7 +15,7 @@ const SliderItem = ({ joke, gif }) => (
 
 SliderItem.propTypes = {
   joke: PropTypes.object.isRequired,
-  gif: PropTypes.object.isRequired
+  background: PropTypes.object.isRequired
 };
 
 export default SliderItem;

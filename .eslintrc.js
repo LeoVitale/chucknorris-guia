@@ -8,12 +8,12 @@ module.exports = {
     sourceType: 'module',
     allowImportExportEverywhere: false
   },
-  plugins: ['flowtype'],
-  extends: ['airbnb', 'plugin:flowtype/recommended'],
+  plugins: ['prettier'],
+  rules: {
+    'prettier/prettier': 'error'
+  },
+  extends: ['airbnb'],
   settings: {
-    flowtype: {
-      onlyFilesWithFlowAnnotation: true
-    },
     'import/resolver': {
       node: {
         extensions: ['.js', '.json', '.css', '.styl']
@@ -56,7 +56,7 @@ module.exports = {
     'no-confusing-arrow': 0,
     'no-underscore-dangle': 0,
     'no-plusplus': 0,
-    camelcase: 1,
+    'camelcase': 1,
     'prefer-template': 1,
     'react/no-array-index-key': 1,
     'global-require': 0,
@@ -66,7 +66,6 @@ module.exports = {
     'import/no-named-default': 1,
     'import/no-extraneous-dependencies': 0,
     'no-unused-vars': 0,
-    'flowtype/no-weak-types': 1,
     'consistent-return': 1,
     'import/first': 0,
     'import/extensions': 0,
@@ -76,8 +75,7 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0,
     'no-case-declarations': 1,
     'import/no-dynamic-require': 0,
-    semi: [2, 'always'],
-    'flowtype/semi': [2, 'always'],
+    'semi': [2, 'always'],
     'jsx-quotes': [2, 'prefer-double'],
     'react/jsx-filename-extension': [2, { extensions: ['.jsx', '.js'] }],
     'spaced-comment': [2, 'always', { markers: ['?'] }],

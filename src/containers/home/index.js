@@ -22,7 +22,9 @@ class Home extends Component {
   }
 
   render() {
-    const { joke, gif, categories, loadingJoke } = this.props;
+    const {
+      joke, background, categories, loadingJoke
+    } = this.props;
 
     return (
       <div>
@@ -30,7 +32,7 @@ class Home extends Component {
           <div className={styles.chuckImage}>
             <img src={chuckImage} alt="chuck norris" />
           </div>
-          <Slider joke={joke} gif={gif} isLoading={loadingJoke} />
+          <Slider joke={joke} background={background} isLoading={loadingJoke} />
           <div className={styles.buttons}>
             <button className={styles.categoryButton} onClick={() => this.loadCategoryJoke('random')}>random</button>
             {categories.map((category, index) => <button className={styles.categoryButton} key={index} onClick={() => this.loadCategoryJoke(category)}>{category}</button>)}
@@ -46,7 +48,7 @@ Home.propTypes = {
   loadRadomJoke: PropTypes.func.isRequired,
   loadCategoryJoke: PropTypes.func.isRequired,
   joke: PropTypes.object.isRequired,
-  gif: PropTypes.object.isRequired,
+  background: PropTypes.object.isRequired,
   categories: PropTypes.array.isRequired,
   loadingJoke: PropTypes.bool.isRequired
 };
@@ -54,7 +56,7 @@ Home.propTypes = {
 const mapStateToProps = state => ({
   categories: state.home.categories,
   joke: state.home.joke,
-  gif: state.home.gif,
+  background: state.home.background,
   loadingJoke: state.home.loadingJoke
 });
 

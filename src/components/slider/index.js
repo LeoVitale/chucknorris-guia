@@ -10,7 +10,7 @@ const Slider = props => (
   <div className={styles.slideContainer}>
     <Loading isLoading={props.isLoading} />
     <TransitionGroup>
-      <CSSTransition timeout={{ appear: 100000, enter: 100000, exit: 100000 }} classNames="pagefade" key={props.joke.id}>
+      <CSSTransition timeout={{ appear: 700, enter: 700, exit: 700 }} classNames="pagefade" key={props.joke.id}>
         <SliderItem {...props} />
       </CSSTransition>
     </TransitionGroup>

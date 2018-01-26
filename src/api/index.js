@@ -8,4 +8,4 @@ export const getJokeByCategory = category => fetch(`${API_URL}/random?category=$
 
 export const searchJokes = query => fetch(`${API_URL}/search?query=${query}`).then(response => response.json());
 
-export const getChuckNorrisGif = () => fetch('https://api.giphy.com/v1/gifs/random?api_key=L2SvTcHAOpdfbn16XP5v5DVBvNTEd1zl&tag=chuck%20norris').then(response => response.json());
+export const getChuckNorrisBackground = () => fetch('https://api.giphy.com/v1/gifs/random?api_key=L2SvTcHAOpdfbn16XP5v5DVBvNTEd1zl&tag=chuck%20norris').then(response => response.json());
